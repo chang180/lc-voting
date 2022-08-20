@@ -15,21 +15,42 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <script defer src="{{ mix('js/app.js') }}"></script>
     </head>
-    <body class="font-sans text-gray-900 text-sm">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <body class="font-sans bg-gray-background text-gray-900 text-sm">
+        <header class="flex items-center justify-between px-8 py-4">
+            <a href="#"><img src="{{ asset('img/logo.svg') }}" alt="logo"></a>
+            <div class="flex items-center">
+                @if (Route::has('login'))
+                <div class="px-6 py-4">
+                    @auth
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+    
+                        <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </a>
+                    </form>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{-- {{ $header }} --}}
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        @endif
+                    @endauth
                 </div>
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+            @endif  
+                <a href="#">
+                    <img src="https://www.gravatar.com/avatar/000000000000000000000000000000?d=mp" 
+                    alt="avatar" class="w-10 h-10 rounded-full">
+                </a>
+            </div>
+        </header>
+        <main class="container mx-auto max-w-custom flex">
+            <div class="w-70 mr-5">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum accusantium ipsam molestiae sunt! Minus fuga aliquam nostrum maiores est ex debitis, pariatur iste dolore odit. Et inventore omnis magni! Incidunt officiis fugiat reprehenderit iste quos totam culpa, neque labore sequi animi? Neque voluptates exercitationem eligendi non, hic ipsam voluptatem dolor ex recusandae adipisci tempore, quas assumenda temporibus itaque eum distinctio explicabo ipsa quidem molestiae. Commodi labore exercitationem porro veritatis, aliquam, a dolorem aspernatur corporis dolore maxime nihil amet ad vero dolor ut magni necessitatibus doloribus nulla ipsa assumenda praesentium animi deleniti sit? Labore esse omnis ad maiores alias distinctio sapiente!
+            </div>
+            <div class="w-175">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore minima ab recusandae nam laboriosam aperiam, hic provident vero quo! Accusamus suscipit, qui recusandae distinctio excepturi eius accusantium eveniet, perspiciatis necessitatibus quae quod possimus ipsa aliquam deleniti. Repellendus excepturi temporibus impedit vel, adipisci nisi laboriosam saepe ipsum accusamus maxime fuga eum necessitatibus ducimus, molestiae totam laborum quibusdam aspernatur molestias doloremque. Iure sit dolore labore maiores numquam distinctio laboriosam laudantium, eos sapiente placeat, nisi, repudiandae praesentium aperiam perspiciatis reprehenderit iusto nihil consequuntur magni quasi odit expedita aliquid molestiae incidunt explicabo. Adipisci aperiam perspiciatis id cumque animi? Excepturi, veniam ipsa. Culpa, alias nulla.</div>
+        </main>
     </body>
 </html>
