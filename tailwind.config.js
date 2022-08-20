@@ -18,8 +18,14 @@ module.exports = {
 
                 black: colors.black,
                 white: colors.white,
-                gray: colors.truGray,
+                gray: colors.neutral,
                 'gray-background': '#f7f8fc',
+                'blue': '#328af1',
+                'blue-hover': '#2879bd',
+                'yellow': '#f1c40f',
+                'red': '#e74c3c',
+                'green': '#2ecc71',
+                'purlple': '#9b59b6',
             },
             spacing: {
                 70: '17.5rem',
