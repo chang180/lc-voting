@@ -58,8 +58,7 @@
                 background-image: linear-gradient(to bottom, #ffffff,#ffffff),linear-gradient(to bottom, rgba(50,138,241,0.22),rgba(99,123,255,0)));
                 background-origin:border-box;
                 background-clip:content-box,border-box;
-                "
-            >
+                ">
                 <div class="text-center px-6 py-2 pt-6">
                     <h3 class="font-semibold text-base">Add an idea</h3>
                     <p class="text-xs mt-4">Let us know what you would lik and we'll take a look up!!</p>
