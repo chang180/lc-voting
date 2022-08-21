@@ -32,7 +32,8 @@
     </div>
     <!-- end filters -->
     <div class="ideas-container space-y-6 my-6">
-        <div class="idea-container hover:shadow-card transition duration-150 ease-in bg-white rounded-xl flex cursor-pointer">
+        <div
+            class="idea-container hover:shadow-card transition duration-150 ease-in bg-white rounded-xl flex cursor-pointer">
             <div class="border-r border-gray-100 px-5 py-8">
                 <div class="text-center">
                     <div class="font-semibold text-2xl">12</div>
@@ -44,25 +45,19 @@
                         class="w-20 bg-gray-200 border border-gray-200 hover:border-gray-400 font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">Vote</button>
                 </div>
             </div>
-            <div class="flex px-2 py-6">
-                <a href="#" class="flex-none">
-                    <img src="https://source.unsplash.com/200x200/?face&corp=face&v=1" alt="avatar"
-                        class="w-14 h-14 rounded-xl">
-                </a>
-                <div class="mx-4">
+            <div class="flex flex-1 px-2 py-6">
+                <div class="flex-none">
+                    <a href="#">
+                        <img src="https://source.unsplash.com/200x200/?face&corp=face&v=1" alt="avatar"
+                            class="w-14 h-14 rounded-xl">
+                    </a>
+                </div>
+                <div class="mx-4 w-full">
                     <h4 class="text-xl font-semibold">
                         <a href="#" class="hover:underline">A random title</a>
                     </h4>
                     <div class="text-gray-600 mt-3 line-clamp-3">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus in quae eligendi itaque corrupti
-                        omnis ex illo dolorum fuga ducimus asperiores, facere aspernatur. Ipsum, quo. Nobis a excepturi
-                        corporis, qui consequatur autem animi. Neque, labore rem ad earum repudiandae cupiditate
-                        incidunt expedita assumenda nulla itaque hic, maiores, harum officia eum! Voluptates dolor
-                        tempora quae nisi impedit repellendus nam architecto voluptatibus, itaque laborum expedita,
-                        laboriosam ipsum, beatae inventore officiis adipisci minus suscipit ex? Tempora inventore
-                        voluptas vitae sapiente expedita, eligendi earum suscipit quas perspiciatis quibusdam veritatis
-                        vero nulla debitis fugiat ratione facilis fuga minima porro impedit est aliquid quis? Ullam,
-                        nobis.
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                     </div>
                     <div class="flex items-center justify-between mt-6">
                         <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
@@ -78,13 +73,14 @@
                                 Open
                             </div>
                             <button
-                                class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in py-2 px-3">
+                                class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in py-2 px-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     fill="currentColor" class="bi bi-three-dots" viewBox="0 0 24 24">
                                     <path style="color:rgba(163,163,163,.5)"
                                         d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
                                 </svg>
-                                <ul class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl py-3 ml-8">
+                                <ul
+                                    class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl py-3 ml-8">
                                     <li><a href="#"
                                             class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Mark
                                             as spam</a></li>
@@ -96,7 +92,8 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- end idea-container -->
-        </div><!-- end ideas-container -->
+            </div>
+        </div><!-- end idea-container -->
+    </div><!-- end ideas-container -->
 
 </x-app-layout>
