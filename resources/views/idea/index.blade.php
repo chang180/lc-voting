@@ -32,6 +32,7 @@
     </div>
     <!-- end filters -->
     <div class="ideas-container space-y-6 my-6">
+        @foreach ($ideas as $idea)
         <div
             class="idea-container hover:shadow-card transition duration-150 ease-in bg-white rounded-xl flex cursor-pointer">
             <div class="hidden md:block border-r border-gray-100 px-5 py-8">
@@ -48,20 +49,20 @@
             <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
                 <div class="flex-none mx-2 md:mx-0">
                     <a href="#">
-                        <img src="https://source.unsplash.com/200x200/?face&corp=face&v=1" alt="avatar"
+                        <img src="https://source.unsplash.com/200x200/?face&corp=face&v={{ $idea->user_id }}" alt="avatar"
                             class="w-14 h-14 rounded-xl">
                     </a>
                 </div>
                 <div class="mx-2 md:mx-4 flex flex-col justify-between w-full">
                     <h4 class="text-xl font-semibold mt-2 md:mt-0">
-                        <a href="#" class="hover:underline">A random title</a>
+                        <a href="{{ route('idea.show',$idea) }}" class="hover:underline">{{ $idea->title }}</a>
                     </h4>
                     <div class="text-gray-600 mt-3 line-clamp-3">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        {{ $idea->description }}
                     </div>
                     <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
                         <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-                            <div>10 hours ago</div>
+                            <div>{{ $idea->created_at->diffForHumans() }}</div>
                             <div>&bull;</div>
                             <div>Category 1</div>
                             <div>&bull;</div>
@@ -106,6 +107,11 @@
                 </div>
             </div>
         </div><!-- end idea-container -->
+        @endforeach
     </div><!-- end ideas-container -->
+
+    <div class="my-8">
+        {{ $ideas->links() }}
+    </div>
 
 </x-app-layout>

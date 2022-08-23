@@ -14,6 +14,7 @@
     <!-- Scripts -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <livewire:styles />
     <script defer src="{{ mix('js/app.js') }}"></script>
 </head>
 
@@ -125,6 +126,7 @@
             </div>
         </div>
     </main>
+    <livewire:scripts />
 </body>
 
 </html>
