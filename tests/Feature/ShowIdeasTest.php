@@ -94,6 +94,11 @@ class ShowIdeasTest extends TestCase
             'description' => 'Same Description',
         ]);
 
+        $ideaThree = Idea::factory()->create([
+            'title' => 'Same Idea',
+            'description' => 'Same Description',
+        ]);
+
         $response = $this->get(route('idea.show',$ideaOne));
 
         $response->assertSuccessful();
@@ -102,7 +107,12 @@ class ShowIdeasTest extends TestCase
         $response = $this->get(route('idea.show',$ideaTwo));
 
         $response->assertSuccessful();
-        $this->assertTrue(request()->path() === 'ideas/same-idea-1');
+        $this->assertTrue(request()->path() === 'ideas/same-idea-2');
+
+        $response = $this->get(route('idea.show',$ideaThree));
+
+        $response->assertSuccessful();
+        $this->assertTrue(request()->path() === 'ideas/same-idea-3');
 
     }
 
