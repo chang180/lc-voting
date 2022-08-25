@@ -14,9 +14,14 @@ class Idea extends Model
 
     protected $guard = [];
 
-    protected function user()
+    public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     /**
@@ -27,11 +32,11 @@ class Idea extends Model
      */
 
     public function sluggable(): array
-{
-    return [
-        'slug' => [
-            'source' => 'title'
-        ]
-    ];
-}
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 }

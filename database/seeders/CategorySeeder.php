@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Idea;
 use Illuminate\Database\Seeder;
 
-class IdeaSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +13,6 @@ class IdeaSeeder extends Seeder
      */
     public function run()
     {
-        // Idea::factory(30)->create();
+        //
     }
 }
