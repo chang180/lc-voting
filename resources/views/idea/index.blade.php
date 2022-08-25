@@ -119,7 +119,6 @@
             </div><!-- end idea-container -->
         @endforeach
     </div><!-- end ideas-container -->
-
     <div class="my-8">
         {{ $ideas->links() }}
     </div>
