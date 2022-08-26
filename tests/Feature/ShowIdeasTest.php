@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\Idea;
 use App\Models\Category;
+use App\Models\Status;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -18,15 +19,20 @@ class ShowIdeasTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
+        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusConsidering = Status::factory()->create(['name' => 'Considering' , 'classes' => 'bg-purple text-white']);
+
         $ideaOne = Idea::factory()->create([
             'title' => 'Idea One',
             'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
             'description' => 'Description of my first title',
         ]);
 
         $ideaTwo = Idea::factory()->create([
             'title' => 'Idea Two',
             'category_id' => $categoryTwo->id,
+            'status_id' => $statusConsidering->id,
             'description' => 'Description of my second title',
         ]);
 
@@ -38,6 +44,7 @@ class ShowIdeasTest extends TestCase
         $response->assertSee($ideaOne->title);
         $response->assertSee($ideaOne->description);
         $response->assertSee($ideaOne->category->name);
+        // $response->assertSee($statusConsidering->name);
 
         $response->assertSee($ideaTwo->title);
         $response->assertSee($ideaTwo->description);
