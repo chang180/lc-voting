@@ -815,6 +815,9 @@ select {
 .block {
   display: block;
 }
+.inline-block {
+  display: inline-block;
+}
 .flex {
   display: flex;
 }
@@ -1108,22 +1111,6 @@ select {
 .bg-indigo-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
-}
-.bg-red {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 69 79 / var(--tw-bg-opacity));
-}
-.bg-green {
-  --tw-bg-opacity: 1;
-  background-color: rgb(26 171 139 / var(--tw-bg-opacity));
-}
-.bg-purple {
-  --tw-bg-opacity: 1;
-  background-color: rgb(139 96 237 / var(--tw-bg-opacity));
-}
-.bg-yellow {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 200 81 / var(--tw-bg-opacity));
 }
 .bg-gray-200 {
   --tw-bg-opacity: 1;

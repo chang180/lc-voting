@@ -14,6 +14,14 @@ class Idea extends Model
 
     protected $guard = [];
 
+    protected $fillable = [
+        'user_id',
+        'category_id',
+        'status_id',
+        'title',
+        'description',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
