@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Idea;
-use App\Models\Category;
+use App\Models\User;
+use App\Models\Vote;
 use App\Models\Status;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,19 +18,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        
+        User::factory()->create([
+            'name' => 'test',
+            'email' => 'test@test.com',
+        ]);
+
+        User::factory(19)->create();
+
         Category::factory()->create(['name' => 'Category 1']);
         Category::factory()->create(['name' => 'Category 2']);
         Category::factory()->create(['name' => 'Category 3']);
         Category::factory()->create(['name' => 'Category 4']);
 
         Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-        Status::factory()->create(['name' => 'Considering' , 'classes' => 'bg-purple text-white']);
+        Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
         Status::factory()->create(['name' => 'In Progress', 'classes' => 'bg-yellow text-white']);
         Status::factory()->create(['name' => 'Implemented', 'classes' => 'bg-green text-white']);
         Status::factory()->create(['name' => 'Closed', 'classes' => 'bg-red text-white']);
-        
-        Idea::factory(30)->create();
+
+
+        Idea::factory(100)->create();
+
+        // Generate unique votes, Ensure idea_id and user_id combinations are unique
+        foreach (range(1, 20) as $user_id) {
+            foreach (range(1, 100) as $idea_id) {
+                if (rand(0,2)) {
+                    Vote::factory()->create([
+                        'user_id' => $user_id,
+                        'idea_id' => $idea_id,
+                    ]);
+                }
+            }
+        }
     }
 }

@@ -734,11 +734,11 @@ select {
 .z-50 {
   z-index: 50;
 }
-.z-10 {
-  z-index: 10;
-}
 .z-20 {
   z-index: 20;
+}
+.z-10 {
+  z-index: 10;
 }
 .mx-auto {
   margin-left: auto;
@@ -896,26 +896,26 @@ select {
 .w-44 {
   width: 11rem;
 }
-.w-36 {
-  width: 9rem;
-}
-.w-64 {
-  width: 16rem;
-}
-.w-1\/2 {
-  width: 50%;
-}
-.w-32 {
-  width: 8rem;
-}
 .w-10 {
   width: 2.5rem;
 }
 .w-70 {
   width: 17.5rem;
 }
+.w-1\/2 {
+  width: 50%;
+}
 .w-6 {
   width: 1.5rem;
+}
+.w-36 {
+  width: 9rem;
+}
+.w-64 {
+  width: 16rem;
+}
+.w-32 {
+  width: 8rem;
 }
 .max-w-7xl {
   max-width: 80rem;
@@ -1003,16 +1003,6 @@ select {
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
-.space-y-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
-.space-x-3 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
-}
 .space-x-10 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(2.5rem * var(--tw-space-x-reverse));
@@ -1027,6 +1017,16 @@ select {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1116,13 +1116,29 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
-.bg-blue {
-  --tw-bg-opacity: 1;
-  background-color: rgb(50 138 241 / var(--tw-bg-opacity));
-}
 .bg-gray-background {
   --tw-bg-opacity: 1;
   background-color: rgb(247 248 252 / var(--tw-bg-opacity));
+}
+.bg-red {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 69 79 / var(--tw-bg-opacity));
+}
+.bg-yellow {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 200 81 / var(--tw-bg-opacity));
+}
+.bg-purple {
+  --tw-bg-opacity: 1;
+  background-color: rgb(139 96 237 / var(--tw-bg-opacity));
+}
+.bg-green {
+  --tw-bg-opacity: 1;
+  background-color: rgb(26 171 139 / var(--tw-bg-opacity));
+}
+.bg-blue {
+  --tw-bg-opacity: 1;
+  background-color: rgb(50 138 241 / var(--tw-bg-opacity));
 }
 .fill-current {
   fill: currentColor;
@@ -1333,21 +1349,21 @@ select {
   --tw-text-opacity: 1;
   color: rgb(67 56 202 / var(--tw-text-opacity));
 }
-.text-yellow {
+.text-blue {
   --tw-text-opacity: 1;
-  color: rgb(249 200 81 / var(--tw-text-opacity));
-}
-.text-green {
-  --tw-text-opacity: 1;
-  color: rgb(26 171 139 / var(--tw-text-opacity));
+  color: rgb(50 138 241 / var(--tw-text-opacity));
 }
 .text-red {
   --tw-text-opacity: 1;
   color: rgb(236 69 79 / var(--tw-text-opacity));
 }
-.text-blue {
+.text-green {
   --tw-text-opacity: 1;
-  color: rgb(50 138 241 / var(--tw-text-opacity));
+  color: rgb(26 171 139 / var(--tw-text-opacity));
+}
+.text-yellow {
+  --tw-text-opacity: 1;
+  color: rgb(249 200 81 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -1813,16 +1829,16 @@ select {
     margin-top: 2.25rem;
   }
 
-  .md\:ml-6 {
-    margin-left: 1.5rem;
-  }
-
   .md\:ml-22 {
     margin-left: 5.5rem;
   }
 
   .md\:mr-5 {
     margin-right: 1.25rem;
+  }
+
+  .md\:ml-6 {
+    margin-left: 1.5rem;
   }
 
   .md\:block {
@@ -1845,6 +1861,10 @@ select {
     width: 66.666667%;
   }
 
+  .md\:w-175 {
+    width: 43.75rem;
+  }
+
   .md\:w-104 {
     width: 26rem;
   }
@@ -1859,10 +1879,6 @@ select {
 
   .md\:w-76 {
     width: 19rem;
-  }
-
-  .md\:w-175 {
-    width: 43.75rem;
   }
 
   .md\:grid-cols-2 {
