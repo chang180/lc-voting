@@ -748,14 +748,6 @@ select {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-.-mx-5 {
-  margin-left: -1.25rem;
-  margin-right: -1.25rem;
-}
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -763,6 +755,14 @@ select {
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
+}
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.-mx-5 {
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
 }
 .ml-1 {
   margin-left: 0.25rem;
@@ -845,6 +845,9 @@ select {
 .h-full {
   height: 100%;
 }
+.h-4 {
+  height: 1rem;
+}
 .h-14 {
   height: 3.5rem;
 }
@@ -853,9 +856,6 @@ select {
 }
 .h-10 {
   height: 2.5rem;
-}
-.h-4 {
-  height: 1rem;
 }
 .h-11 {
   height: 2.75rem;
@@ -890,9 +890,6 @@ select {
 .w-14 {
   width: 3.5rem;
 }
-.w-28 {
-  width: 7rem;
-}
 .w-44 {
   width: 11rem;
 }
@@ -907,6 +904,9 @@ select {
 }
 .w-6 {
   width: 1.5rem;
+}
+.w-28 {
+  width: 7rem;
 }
 .w-36 {
   width: 9rem;
@@ -1064,11 +1064,11 @@ select {
 .border-l-4 {
   border-left-width: 4px;
 }
-.border-r {
-  border-right-width: 1px;
-}
 .border-b-4 {
   border-bottom-width: 4px;
+}
+.border-r {
+  border-right-width: 1px;
 }
 .border-none {
   border-style: none;
@@ -1088,13 +1088,13 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(129 140 248 / var(--tw-border-opacity));
 }
-.border-gray-100 {
-  --tw-border-opacity: 1;
-  border-color: rgb(245 245 245 / var(--tw-border-opacity));
-}
 .border-blue {
   --tw-border-opacity: 1;
   border-color: rgb(50 138 241 / var(--tw-border-opacity));
+}
+.border-gray-100 {
+  --tw-border-opacity: 1;
+  border-color: rgb(245 245 245 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1111,10 +1111,6 @@ select {
 .bg-indigo-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
-}
-.bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
 .bg-gray-background {
   --tw-bg-opacity: 1;
@@ -1139,6 +1135,10 @@ select {
 .bg-blue {
   --tw-bg-opacity: 1;
   background-color: rgb(50 138 241 / var(--tw-bg-opacity));
+}
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
 .fill-current {
   fill: currentColor;
@@ -1177,22 +1177,6 @@ select {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
-.px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -1201,9 +1185,25 @@ select {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .pt-8 {
   padding-top: 2rem;
@@ -1223,9 +1223,6 @@ select {
 .pl-8 {
   padding-left: 2rem;
 }
-.pr-8 {
-  padding-right: 2rem;
-}
 .pt-4 {
   padding-top: 1rem;
 }
@@ -1237,6 +1234,9 @@ select {
 }
 .pb-1 {
   padding-bottom: 0.25rem;
+}
+.pr-8 {
+  padding-right: 2rem;
 }
 .text-left {
   text-align: left;
@@ -1267,13 +1267,13 @@ select {
   font-size: 1rem;
   line-height: 1.5rem;
 }
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
 .text-xxs {
   font-size: 0.625rem;
   line-height: 1rem;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 .font-semibold {
   font-weight: 600;
@@ -1807,34 +1807,34 @@ select {
     top: 2rem;
   }
 
-  .md\:mx-0 {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
   .md\:mx-4 {
     margin-left: 1rem;
     margin-right: 1rem;
   }
 
-  .md\:mt-0 {
-    margin-top: 0px;
-  }
-
-  .md\:ml-8 {
-    margin-left: 2rem;
-  }
-
-  .md\:mt-9 {
-    margin-top: 2.25rem;
+  .md\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .md\:ml-22 {
     margin-left: 5.5rem;
   }
 
+  .md\:ml-8 {
+    margin-left: 2rem;
+  }
+
+  .md\:mt-0 {
+    margin-top: 0px;
+  }
+
   .md\:mr-5 {
     margin-right: 1.25rem;
+  }
+
+  .md\:mt-9 {
+    margin-top: 2.25rem;
   }
 
   .md\:ml-6 {

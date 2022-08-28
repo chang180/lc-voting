@@ -24,7 +24,7 @@ class VoteShowPageTest extends TestCase
 
         $category = Category::factory()->create([
             'name' => 'Category 1',
-        ]);  
+        ]);
 
         $status = Status::factory()->create([
             'name' => 'Open',
@@ -49,7 +49,7 @@ class VoteShowPageTest extends TestCase
 
         $category = Category::factory()->create([
             'name' => 'Category 1',
-        ]);  
+        ]);
 
         $status = Status::factory()->create([
             'name' => 'Open',
@@ -85,7 +85,7 @@ class VoteShowPageTest extends TestCase
 
         $category = Category::factory()->create([
             'name' => 'Category 1',
-        ]);  
+        ]);
 
         $status = Status::factory()->create([
             'name' => 'Open',
@@ -100,13 +100,50 @@ class VoteShowPageTest extends TestCase
             'description' => 'Description of my first title',
         ]);
 
-        Livewire::test(IdeaShow::class,[
+        Livewire::test(IdeaShow::class, [
             'idea' => $idea,
             'votesCount' => 5,
         ])
-        ->assertSet('votesCount', 5)
-        ->assertSee('<div class="text-sm font-bold leading-none">5</div>',false)
-        ->assertSee('<div class="text-xl leading-none">5</div>',false);
-
+            ->assertSet('votesCount', 5)
+            ->assertSee('<div class="text-sm font-bold leading-none ">5</div>', false)
+            ->assertSee('<div class="text-xl leading-none ">5</div>', false);
     }
+
+    /** @test */
+    public function user_who_is_logged_in_shows_voted_if_idea_already_voted_for()
+    {
+        User::factory()->create();
+        $user = User::find(1);
+
+        $category = Category::factory()->create([
+            'name' => 'Category 1',
+        ]);
+
+        $status = Status::factory()->create([
+            'name' => 'Open',
+            'classes' => 'bg-gray-200',
+        ]);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'Idea One',
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'description' => 'Description of my first title',
+        ]);
+
+        Vote::factory()->create([
+            'user_id' => $user->id,
+            'idea_id' => $idea->id,
+        ]);
+
+
+        Livewire::actingAs($user) //can't acting as user logged in
+            ->test(IdeaShow::class, [
+            'idea' => $idea,
+            'votesCount' => 5,
+        ])
+            ->assertSee('Vote');
+    }
+    
 }
