@@ -138,12 +138,13 @@ class VoteShowPageTest extends TestCase
         ]);
 
 
-        Livewire::actingAs($user) //can't acting as user logged in
+        Livewire::actingAs($user) 
             ->test(IdeaShow::class, [
             'idea' => $idea,
             'votesCount' => 5,
         ])
-            ->assertSee('Vote');
+            ->assertSet('hasVoted', true)
+            ->assertSee('Voted');
     }
     
 }

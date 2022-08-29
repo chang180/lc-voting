@@ -76,7 +76,7 @@ class VoteIndexPageTest extends TestCase
 
         $this->get(route('idea.index'))
             ->assertViewHas('ideas', function ($ideas) {
-                return $ideas->first()->votes_count === 2;
+                return $ideas->first()->votes_count == 2;
             });
     }
 
