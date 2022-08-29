@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Vote;
 use App\Models\Status;
 use App\Models\Category;
+use App\Exceptions\DuplicateVoteException;
+use App\Exceptions\VoteNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class IdeaTest extends TestCase
@@ -75,6 +77,39 @@ class IdeaTest extends TestCase
     }
 
     /** @test */
+    public function voting_for_an_idea_thats_already_voted_for_throws_exception()
+    {
+        $user = User::factory()->create();
+
+        $category = Category::factory()->create([
+            'name' => 'Category 1',
+        ]);
+
+        $status = Status::factory()->create([
+            'name' => 'Open',
+            'classes' => 'bg-gray-200',
+        ]);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => 'Idea 1',
+            'description' => 'Description 1',
+        ]);
+
+        Vote::factory()->create([
+            'user_id' => $user->id,
+            'idea_id' => $idea->id,
+        ]);
+
+        $this->expectException(DuplicateVoteException::class);
+
+        $idea->vote($user);
+
+    }
+
+    /** @test */
     public function user_can_remove_vote_for_idea()
     {
         $user = User::factory()->create();
@@ -104,5 +139,33 @@ class IdeaTest extends TestCase
         $this->assertTrue($idea->isVotedByUser($user));
         $idea->removeVote($user);
         $this->assertFalse($idea->isVotedByUser($user));
+    }
+
+    /** @test */
+    public function removing_a_vote_that_doesnt_exist_throws_exception()
+    {
+        $user = User::factory()->create();
+
+        $category = Category::factory()->create([
+            'name' => 'Category 1',
+        ]);
+
+        $status = Status::factory()->create([
+            'name' => 'Open',
+            'classes' => 'bg-gray-200',
+        ]);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => 'Idea 1',
+            'description' => 'Description 1',
+        ]);
+
+        $this->expectException(VoteNotFoundException::class);
+
+        $idea->removeVote($user);
+
     }
 }
