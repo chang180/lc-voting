@@ -29,7 +29,8 @@ class IdeasIndex extends Component
                 ])
                 ->withCount('votes')
                 ->orderBy('id', 'desc')
-                ->Paginate(Idea::PAGINATION_COUNT),
+                ->Paginate(Idea::PAGINATION_COUNT)
+                ->appends(request()->query()),
         ]);
     }
 }
