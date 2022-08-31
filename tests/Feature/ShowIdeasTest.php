@@ -198,9 +198,39 @@ class ShowIdeasTest extends TestCase
 
         $response = $this->get('/?category=Category%202&status=Considering');
         $response = $this->get(route('idea.show',$ideaOne));
-        $response->assertSee('/?category=Category%202&status=Considering');
-        // dd($response['backUrl'])
+        $this->assertStringContainsString('/?category=Category%202&amp;status=Considering', $response->content());
+        // dd($response['backUrl']);
         // $this->assertStringContainsString('/?category=Category%202&status=Considering', $respons['backUrl']);
+
+    }
+    /** @test */
+    public function in_app_back_button_works_when_show_page_only_page_visited()
+    {
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
+
+        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
+
+        $ideaOne = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'Idea One',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+            'description' => 'Description of my first title',
+        ]);
+        $ideaTwo = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'Idea Two',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusConsidering->id,
+            'description' => 'Description of my second title',
+        ]);
+
+        $response = $this->get(route('idea.show',$ideaOne));
+        $this->assertEquals(route('idea.index'), $response['backUrl']);
 
     }
 }
