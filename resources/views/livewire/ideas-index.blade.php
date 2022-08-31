@@ -10,14 +10,15 @@
             </select>
         </div>
         <div class="w-full md:w-1/3">
-            <select wire:model="filter" name="other_filters" id="other_filters" class="w-full rounded-xl border-none px-4 py-2">
+            <select wire:model="filter" name="other_filters" id="other_filters"
+                class="w-full rounded-xl border-none px-4 py-2">
                 <option value="No Filter">No Filter</option>`
                 <option value="Top Voted">Top Voted</option>
                 <option value="My Ideas">My Ideas</option>
             </select>
         </div>
         <div class="w-full md:w-2/3 relative">
-            <input type="search" placeholder="Find an idea"
+            <input wire:model="search" type="search" placeholder="Find an idea"
                 class="w-full rounded-xl bg-white border-none placeholder-gray-900 px-4 py-2 pl-8" name=""
                 id="">
             <div class="absolute top-0 flex items-center h-full ml-2">
@@ -31,9 +32,16 @@
     </div>
     <!-- end filters -->
     <div class="ideas-container space-y-6 my-6">
-        @foreach ($ideas as $idea)
+        @forelse ($ideas as $idea)
             <livewire:idea-index :key="$idea->id" :idea="$idea" :votesCount="$idea->votes_count" />
-        @endforeach
+        @empty
+            <div class="flex flex-col items-center justify-center mt-12">
+                <img src="{{ asset('img/no-ideas.svg') }}" alt="No Ideas" class="mix-blend-luminosity">
+                <div class="text-center text-gray-400 font-bold text-xl">
+                    <p>No ideas found</p>
+                </div>
+            </div>
+        @endforelse
     </div><!-- end ideas-container -->
     <div class="my-8">
         {{ $ideas->links() }}
