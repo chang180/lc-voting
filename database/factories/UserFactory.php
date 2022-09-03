@@ -2,11 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = User::class;
     
     /**
      * Define the model's default state.
@@ -34,6 +41,15 @@ class UserFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'email_verified_at' => null,
+            ];
+        });
+    }
+
+    public function admin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'email' => 'test@test.com',
             ];
         });
     }

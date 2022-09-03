@@ -49,7 +49,7 @@ class User extends Authenticatable
     public function votes()
     {
         return $this->belongsToMany(Idea::class, 'votes');
-    } 
+    }
 
     public function getAvatar()
     {
@@ -72,4 +72,5 @@ class User extends Authenticatable
             'chang180@gmail.com',
         ]);
     }
+
 }

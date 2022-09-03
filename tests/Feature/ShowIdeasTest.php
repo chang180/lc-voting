@@ -22,8 +22,8 @@ class ShowIdeasTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-        $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
+        $statusOpen = Status::factory()->create(['name' => 'OpenUnique']);
+        $statusConsidering = Status::factory()->create(['name' => 'ConsideringUnique']);
 
         $ideaOne = Idea::factory()->create([
             'user_id' => $user->id,
@@ -49,12 +49,12 @@ class ShowIdeasTest extends TestCase
         $response->assertSee($ideaOne->title);
         $response->assertSee($ideaOne->description);
         $response->assertSee($ideaOne->category->name);
-        $response->assertSee('<div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 px-4 py-2">Open</div>', false);
+        $response->assertSee('OpenUnique');
 
         $response->assertSee($ideaTwo->title);
         $response->assertSee($ideaTwo->description);
         $response->assertSee($ideaTwo->category->name);
-        $response->assertSee('<div class="bg-purple text-white text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 px-4 py-2">Considering</div>', false);
+        $response->assertSee('ConsideringUnique');
     }
 
     /** @test */
@@ -65,14 +65,12 @@ class ShowIdeasTest extends TestCase
 
         $category = Category::factory()->create(['name' => 'Category 1']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusOpen = Status::factory()->create(['name' => 'OpenUnique']);
 
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
-            'title' => 'Idea !!!',
             'category_id' => $category->id,
             'status_id' => $statusOpen->id,
-            'description' => 'Description of my title',
         ]);
 
 
@@ -82,24 +80,14 @@ class ShowIdeasTest extends TestCase
         $response->assertSee($idea->title);
         $response->assertSee($idea->category->name);
         $response->assertSee($idea->description);
-        $response->assertSee('<div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 px-4 py-2">Open</div>', false);
+        $response->assertSee('OpenUnique');
     }
 
     /** @test */
 
     public function ideas_pagination_works()
     {
-        $user = User::factory()->create();
-
-        $category = Category::factory()->create(['name' => 'Category 1']);
-
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        Idea::factory(Idea::PAGINATION_COUNT + 1)->create([
-            'user_id' => $user->id,
-            'category_id' => $category->id,
-            'status_id' => $statusOpen->id,
-        ]);
+        Idea::factory(Idea::PAGINATION_COUNT + 1)->create();
 
         $ideaOne = Idea::find(1);
         $ideaOne->title = "My First Idea";
