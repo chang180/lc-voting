@@ -104,9 +104,7 @@ class VoteShowPageTest extends TestCase
             'idea' => $idea,
             'votesCount' => 5,
         ])
-            ->assertSet('votesCount', 5)
-            ->assertSee('<div class="text-sm font-bold leading-none ">5</div>', false)
-            ->assertSee('<div class="text-xl leading-none ">5</div>', false);
+            ->assertSet('votesCount', 5);
     }
 
     /** @test */
