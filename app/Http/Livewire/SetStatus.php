@@ -7,7 +7,6 @@ use App\Models\Idea;
 use App\Models\Status;
 use Livewire\Component;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Mail;
 
 class SetStatus extends Component
 {
