@@ -19,7 +19,11 @@
 </head>
 
 <body class="font-sans bg-gray-background text-gray-900 text-sm">
-    <div class="bg-red bg-yellow bg-purple bg-green text-blue hidden"></div>
+    <div class="bg-red hidden"></div>
+    <div class="bg-yellow hidden"></div>
+    <div class="bg-purple hidden"></div>
+    <div class="bg-green hidden"></div>
+    <div class="text-blue hidden"></div>
     <header class="flex flex-col md:flex-row items-center justify-between px-8 py-4">
         <a href="/"><img src="{{ asset('img/logo.svg') }}" alt="logo"></a>
         <div class="flex items-center mt-2 md:mt-0">
@@ -87,7 +91,7 @@
                 @endauth
             </div>
         </div>
-        
+
         <div class="w-full px-2 md:px-0 md:w-175">
             <livewire:status-filters />
 
