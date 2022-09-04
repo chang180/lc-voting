@@ -14,6 +14,10 @@
         <livewire:edit-idea :idea='$idea' />
     @endcan
 
+    @can('delete', $idea)
+        <livewire:delete-idea :idea='$idea' />
+    @endcan
+
     <div class="comments-container relative space-y-6 my-8 md:ml-22 mt-1 pt-4">
         @for ($i=0; $i < 3; $i++)
         <div class="comment-container relative bg-white rounded-xl flex mt-4">
