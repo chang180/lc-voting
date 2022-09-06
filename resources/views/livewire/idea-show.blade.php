@@ -11,6 +11,11 @@
                     {{ $idea->title }}
                 </h4>
                 <div class="text-gray-600 mt-3">
+                    @admin
+                        @if ($idea->spam_reports > 0)
+                            <div class="text-red mb-w">Spam Reports: {{ $idea->spam_reports }}</div>
+                        @endif
+                    @endadmin
                     {{ $idea->description }}
                 </div>
                 <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
@@ -27,41 +32,54 @@
                         <div
                             class="{{ $idea->status->classes }} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 px-4 py-2">
                             {{ $idea->status->name }}</div>
-                        <div class="relative">
-                            <button @click="isOpen = true"
-                                class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in py-2 px-3">
-                                <svg width="24" height="24" fill="currentColor" class="bi bi-three-dots"
-                                    viewBox="0 0 24 24">
-                                    <path style="color:rgba(163,163,163,.5)"
-                                        d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                                </svg>
-                            </button>
-                            <ul x-cloak x-show="isOpen" x-transition.origin.top.left @click.away="isOpen = false"
-                                @keydown.escape.window="isOpen = false"
-                                class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0 z-10">
-                                @can('update', $idea)
-                                <li><a href="#"
-                                        @click.prevent="
+                        @auth
+                            <div class="relative">
+                                <button @click="isOpen = true"
+                                    class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in py-2 px-3">
+                                    <svg width="24" height="24" fill="currentColor" class="bi bi-three-dots"
+                                        viewBox="0 0 24 24">
+                                        <path style="color:rgba(163,163,163,.5)"
+                                            d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+                                    </svg>
+                                </button>
+                                <ul x-cloak x-show="isOpen" x-transition.origin.top.left @click.away="isOpen = false"
+                                    @keydown.escape.window="isOpen = false"
+                                    class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0 z-10">
+                                    @can('update', $idea)
+                                        <li><a href="#"
+                                                @click.prevent="
                                             isOpen = false
                                             $dispatch('custom-show-edit-modal')
                                         "
-                                        class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Edit
-                                        Idea</a></li>
-                                @endcan
-                                @can('delete', $idea)
-                                <li><a href="#"
-                                        @click.prevent="
+                                                class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Edit
+                                                Idea</a></li>
+                                    @endcan
+                                    @can('delete', $idea)
+                                        <li><a href="#"
+                                                @click.prevent="
                                             isOpen = false
                                             $dispatch('custom-show-delete-modal')
                                         "
-                                        class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Delete
-                                        Idea</a></li>
-                                @endcan
-                                <li><a href="#"
-                                        class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Mark
-                                        as spam</a></li>
-                            </ul>
-                        </div>
+                                                class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Delete
+                                                Idea</a></li>
+                                    @endcan
+                                    <li><a href="#"
+                                            @click.prevent="
+                                            isOpen = false
+                                            $dispatch('custom-show-spam-modal')
+                                        "
+                                            class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Mark
+                                            as Spam</a></li>
+                                    <li><a href="#"
+                                            @click.prevent="
+                                            isOpen = false
+                                            $dispatch('custom-show-not-spam-modal')
+                                        "
+                                            class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Not
+                                            Spam</a></li>
+                                </ul>
+                            </div>
+                        @endauth
                     </div>
                     <div class="flex items-center md:hidden mt-4 md:mt-9">
                         <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-2 pr-8">
@@ -125,15 +143,14 @@
                     </form>
                 </div>
             </div>
-            @auth
-                @if (auth()->user()->isAdmin())
-                    <livewire:set-status :idea="$idea" />
-                @endif
-            @endauth
+            @admin
+                <livewire:set-status :idea="$idea" />
+            @endadmin
         </div>
         <div class="hidden md:flex items-center space-x-3">
             <div class="bg-white font-semibold text-center rounded-xl px-3 py-2">
-                <div class="text-xl leading-none @if ($hasVoted) text-blue @endif">{{ $votesCount }}
+                <div class="text-xl leading-none @if ($hasVoted) text-blue @endif">
+                    {{ $votesCount }}
                 </div>
                 <div class="text-gray-400 text-xs leading-none">Votes</div>
             </div>

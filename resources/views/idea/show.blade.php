@@ -18,6 +18,10 @@
         <livewire:delete-idea :idea='$idea' />
     @endcan
 
+        <livewire:mark-idea-as-spam :idea='$idea' />
+
+        <livewire:mark-idea-as-not-spam :idea='$idea' />
+
     <div class="comments-container relative space-y-6 my-8 md:ml-22 mt-1 pt-4">
         @for ($i=0; $i < 3; $i++)
         <div class="comment-container relative bg-white rounded-xl flex mt-4">
