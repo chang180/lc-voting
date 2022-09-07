@@ -66,14 +66,14 @@
                                     <li><a href="#"
                                             @click.prevent="
                                             isOpen = false
-                                            $dispatch('custom-show-spam-modal')
+                                            $dispatch('custom-show-mark-idea-as-spam-modal')
                                         "
                                             class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Mark
                                             as Spam</a></li>
                                     <li><a href="#"
                                             @click.prevent="
                                             isOpen = false
-                                            $dispatch('custom-show-not-spam-modal')
+                                            $dispatch('custom-show-mark-idea-as-not-spam-modal')
                                         "
                                             class="hover:bg-gray-100 px-5 py-3 block transition duration-150 ease-in">Not
                                             Spam</a></li>
