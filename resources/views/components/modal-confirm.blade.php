@@ -14,7 +14,8 @@
     })" x-init="Livewire.on('{{ $eventToCloseModal }}', () => {
         isOpen = false
     })
-    " class="relative z-10" aria-labelledby="modal-title" role="dialog" a ria-modal="true">
+    " 
+    class="relative z-20" aria-labelledby="modal-title" role="dialog" a ria-modal="true">
     <div x-show.transition.opacity.duration.300ms="isOpen" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity">
     </div>
 
