@@ -48,7 +48,7 @@
         </button>
     </div>
 
-    <div>
+    {{-- <div>
         @if (session('success_message'))
             <div x-data="{ isVisible: true }" x-init="setTimeout(() => {
                 isVisible = false;
@@ -57,5 +57,5 @@
                 {{ session('success_message') }}
             </div>
         @endif
-    </div>
+    </div> --}}
 </form>

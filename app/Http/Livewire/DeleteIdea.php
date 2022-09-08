@@ -24,6 +24,8 @@ class DeleteIdea extends Component
         Vote::where('idea_id', $this->idea->id)->delete();
 
         $this->idea->delete();
+
+        session()->flash('success_message', 'Idea was deleted successfully');
         
         return redirect()->route('idea.index');
     }
