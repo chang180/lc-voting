@@ -1,8 +1,8 @@
 <div>
     <!-- filters -->
-    <div class="filters flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6">
+    <div class="flex flex-col space-y-3 filters md:flex-row md:space-y-0 md:space-x-6">
         <div class="w-full md:w-1/3">
-            <select wire:model="category" name="category" id="category" class="w-full rounded-xl border-none px-4 py-2">
+            <select wire:model="category" name="category" id="category" class="w-full px-4 py-2 border-none rounded-xl">
                 <option value="All Categories">Category All</option>
                 @foreach ($categories as $category)
                     <option name="category" value="{{ $category->name }}">{{ $category->name }}</option>
@@ -11,7 +11,7 @@
         </div>
         <div class="w-full md:w-1/3">
             <select wire:model="filter" name="other_filters" id="other_filters"
-                class="w-full rounded-xl border-none px-4 py-2">
+                class="w-full px-4 py-2 border-none rounded-xl">
                 <option value="No Filter">No Filter</option>`
                 <option value="Top Voted">Top Voted</option>
                 <option value="My Ideas">My Ideas</option>
@@ -20,9 +20,9 @@
                 @endadmin
             </select>
         </div>
-        <div class="w-full md:w-2/3 relative">
+        <div class="relative w-full md:w-2/3">
             <input wire:model="search" type="search" placeholder="Find an idea"
-                class="w-full rounded-xl bg-white border-none placeholder-gray-900 px-4 py-2 pl-8" name=""
+                class="w-full px-4 py-2 pl-8 placeholder-gray-900 bg-white border-none rounded-xl" name=""
                 id="">
             <div class="absolute top-0 flex items-center h-full ml-2">
                 <svg class="w-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -34,14 +34,14 @@
         </div>
     </div>
     <!-- end filters -->
-    <div class="ideas-container space-y-6 my-6">
+    <div class="my-6 space-y-6 ideas-container">
         @forelse ($ideas as $idea)
             <livewire:idea-index :key="$idea->id" :idea="$idea" :votesCount="$idea->votes_count" />
         @empty
             <div class="flex flex-col items-center justify-center mt-12">
                 <img src="{{ asset('img/no-ideas.svg') }}" alt="No Ideas" class="mix-blend-luminosity">
-                <div class="text-center text-gray-400 font-bold text-xl">
-                    <p>No ideas found</p>
+                <div class="text-xl font-bold text-center text-gray-400">
+                    <p>No ideas was found ...</p>
                 </div>
             </div>
         @endforelse
