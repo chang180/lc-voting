@@ -29,6 +29,10 @@ Livewire.on('ideaWasMarkedAsSpam', message => {
 Livewire.on('ideaWasMarkedAsNotSpam', message => {
     showNotification(message)
 })
+
+Livewire.on('commentWasAdded', message => {
+    showNotification(message)
+})
 @endif
 " x-show="isOpen"
     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-8"

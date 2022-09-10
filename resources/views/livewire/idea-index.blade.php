@@ -1,7 +1,6 @@
 <div x-data
     @click="const clicked = $event.target
                 const target = clicked.tagName.toLowerCase();
-                console.log(target);
                 const ignores = ['button','svg','path','a']
                 if(!ignores.includes(target)){
                     $event.target.closest('.idea-container').querySelector('.idea-link').click();
