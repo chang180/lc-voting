@@ -1,10 +1,33 @@
 <div x-data="{ isOpen: false }" 
-    x-init="Livewire.on('commentWasAdded', () => {
+    x-init="
+    Livewire.on('commentWasAdded', () => {
         isOpen = false
     })
+    
+    Livewire.hook('message.processed', (message, component) => {
+        if (message.updateQueue[0].payload.event === 'commentWasAdded'
+        && message.component.fingerprint.name === 'idea-comments') {
+            const lastComment = document.querySelector('.comment-container:last-child')
+            lastComment.scrollIntoView({ behavior: 'smooth' })
+            lastComment.classList.add('bg-green-50')
+            setTimeout(() => {
+                lastComment.classList.remove('bg-green-50')
+            }, 5000)
+        }
+    })
     " 
+    
     class="relative">
-    <button @click="isOpen = true" type="button"
+    <button 
+        @click="
+            isOpen = !isOpen
+            if(isOpen) {
+                $nextTick(() => {
+                    $refs.comment.focus()
+                })
+            }
+        " 
+        type="button"
         class="flex items-center justify-center px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 w-36 bg-blue rounded-xl border-blue hover:bg-blue-hover">
         Reply
     </button>
@@ -15,7 +38,7 @@
         @auth
             <form wire:submit.prevent='addComment' action="#" class="px-4 py-6 space-y-4">
                 <div>
-                    <textarea wire:model="comment" name="post_comment" id="post_comment" cols="30" rows="4"
+                    <textarea x-ref="comment" wire:model="comment" name="post_comment" id="post_comment" cols="30" rows="4"
                         class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
                         placeholder="Go ahead, don't be shine. Share your thoughts..." required></textarea>
 
@@ -27,7 +50,7 @@
                 </div>
                 <div class="flex flex-col items-center md:flex-row md:space-x-3">
                     <button 
-                        class="flex items-center justify-center w-full px-6 py-3 text-sm font-semibold transition duration-150 ease-in border h-11 md:w-1/2 bg-blue rounded-xl border-blue hover:bg-blue-hover">
+                        class="flex items-center justify-center w-full px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 md:w-1/2 bg-blue rounded-xl border-blue hover:bg-blue-hover">
                         Post Comment
                     </button>
                     <button type="button"
