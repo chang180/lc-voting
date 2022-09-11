@@ -87,26 +87,19 @@ class ShowIdeasTest extends TestCase
 
     public function ideas_pagination_works()
     {
-        Idea::factory(Idea::PAGINATION_COUNT + 1)->create();
+        $ideaOne = Idea::factory()->create();
 
-        $ideaOne = Idea::find(1);
-        $ideaOne->title = "My First Idea";
-        $ideaOne->save();
-
-        $ideaEleven = Idea::find(11);
-        $ideaEleven->title = "My 11th Idea";
-        $ideaEleven->save();
+        Idea::factory($ideaOne->getPerPage())->create();
 
         $response = $this->get('/');
 
-        $response->assertSee($ideaEleven->title);
+        $response->assertSee(Idea::find(Idea::count())->title);
         $response->assertDontSee($ideaOne->title);
-
 
         $response = $this->get('/?page=2');
 
         $response->assertSee($ideaOne->title);
-        $response->assertDontSee($ideaEleven->title);
+        $response->assertDontSee(Idea::find(Idea::count())->title);
     }
 
     /** @test */
@@ -218,7 +211,8 @@ class ShowIdeasTest extends TestCase
         ]);
 
         $response = $this->get(route('idea.show',$ideaOne));
-        $this->assertEquals(route('idea.index'), $response['backUrl']);
+        // $this->assertEquals(route('idea.index'), $response['backUrl']);
+        $this->assertStringContainsString(route('idea.index'), $response->content());
 
     }
 }

@@ -4,7 +4,11 @@
             @foreach ($comments as $comment)
                 <livewire:idea-comment :key="$comment->id" :comment="$comment" :ideaUserId="$idea->user->id">
             @endforeach
+
         </div><!-- end comments-container -->
+        <div class="my-8 ml-22">
+            {{ $comments->onEachSide(1)->links() }}
+        </div>
     @else
         <div class="flex flex-col items-center justify-center mt-12">
             <img src="{{ asset('img/no-ideas.svg') }}" alt="No Ideas" class="mix-blend-luminosity">
