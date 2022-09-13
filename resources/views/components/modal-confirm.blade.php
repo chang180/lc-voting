@@ -21,7 +21,7 @@
     @endif
     x-init="
         Livewire.on('{{ $eventToCloseModal }}', () => {
-        isOpen = false
+            isOpen = false
         })
 
         @if ($livewireEventToOpenModal)

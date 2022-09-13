@@ -22,9 +22,9 @@ class DeleteComment extends Component
 
     public function deleteComment()
     {
-        // if(auth()->guest() || auth()->user()->cannot('delete', $this->comment)) {
-        //     abort(Response::HTTP_FORBIDDEN);
-        // }
+        if(auth()->guest() || auth()->user()->cannot('delete', $this->comment)) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
 
         $this->comment->delete();
 
