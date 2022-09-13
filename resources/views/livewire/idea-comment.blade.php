@@ -35,22 +35,27 @@
                             <ul x-cloak x-show="isOpen" x-transition.origin.top.left @click.away="isOpen = false"
                                 @keydown.escape.window="isOpen = false"
                                 class="absolute right-0 z-20 py-3 font-semibold text-left bg-white w-44 shadow-dialog rounded-xl md:ml-8 top-8 md:top-6 md:left-0">
-                                @can('update', $comment)
+                                {{-- @can('update', $comment) --}}
                                     <li><a href="#"
                                             @click.prevent="
                                                 isOpen = false
                                                 Livewire.emit('setEditComment', {{ $comment->id }})
-                                                {{-- $dispatch('custom-show-edit-modal') --}}
                                             "
                                             class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Edit
                                             Comment</a></li>
-                                @endcan
+                                {{-- @endcan --}}
+                                {{-- @can('update', $comment) --}}
+                                    <li><a href="#"
+                                            @click.prevent="
+                                                isOpen = false
+                                                Livewire.emit('setDeleteComment', {{ $comment->id }})
+                                            "
+                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
+                                            Comment</a></li>
+                                {{-- @endcan --}}
                                 <li><a href="#"
                                         class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
                                         as spam</a></li>
-                                <li><a href="#"
-                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
-                                        Comment</a></li>
                             </ul>
                         </div>
                     </div>
