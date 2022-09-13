@@ -21,28 +21,40 @@
 
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
                 </div>
-                <div x-data="{ isOpen: false }" class="flex items-center space-x-2">
-                    <div class="relative">
-                        <button @click="isOpen = true"
-                            class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 border rounded-full hover:bg-gray-200 h-7">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                class="bi bi-three-dots" viewBox="0 0 24 24">
-                                <path style="color:rgba(163,163,163,.5)"
-                                    d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                            </svg>
-                        </button>
-                        <ul x-cloak x-show="isOpen" x-transition.origin.top.left @click.away="isOpen = false"
-                            @keydown.escape.window="isOpen = false"
-                            class="absolute right-0 z-20 py-3 font-semibold text-left bg-white w-44 shadow-dialog rounded-xl md:ml-8 top-8 md:top-6 md:left-0">
-                            <li><a href="#"
-                                    class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
-                                    as spam</a></li>
-                            <li><a href="#"
-                                    class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
-                                    Comment</a></li>
-                        </ul>
+                @auth
+                    <div x-data="{ isOpen: false }" class="flex items-center space-x-2">
+                        <div class="relative">
+                            <button @click="isOpen = true"
+                                class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 border rounded-full hover:bg-gray-200 h-7">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    class="bi bi-three-dots" viewBox="0 0 24 24">
+                                    <path style="color:rgba(163,163,163,.5)"
+                                        d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+                                </svg>
+                            </button>
+                            <ul x-cloak x-show="isOpen" x-transition.origin.top.left @click.away="isOpen = false"
+                                @keydown.escape.window="isOpen = false"
+                                class="absolute right-0 z-20 py-3 font-semibold text-left bg-white w-44 shadow-dialog rounded-xl md:ml-8 top-8 md:top-6 md:left-0">
+                                @can('update', $comment)
+                                    <li><a href="#"
+                                            @click.prevent="
+                                                isOpen = false
+                                                Livewire.emit('setEditComment', {{ $comment->id }})
+                                                {{-- $dispatch('custom-show-edit-modal') --}}
+                                            "
+                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Edit
+                                            Comment</a></li>
+                                @endcan
+                                <li><a href="#"
+                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
+                                        as spam</a></li>
+                                <li><a href="#"
+                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
+                                        Comment</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                @endauth
             </div>
         </div>
     </div>
