@@ -21,7 +21,7 @@ class MarkCommentAsNotSpam extends Component
 
     public function markAsNotSpam()
     {
-        if(auth()->guest()){
+        if(auth()->guest() || !auth()->user()->isAdmin()) {
             abort(Response::HTTP_FORBIDDEN);
         }
 
