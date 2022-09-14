@@ -41,6 +41,15 @@ Livewire.on('commentWasUpdated', message => {
 Livewire.on('commentWasDeleted', message => {
     showNotification(message)
 })
+
+Livewire.on('commentWasMarkedAsSpam', message => {
+    showNotification(message)
+})
+
+Livewire.on('commentWasMarkedAsNotSpam', message => {
+    showNotification(message)
+})
+
 @endif
 " x-show="isOpen"
     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-8"

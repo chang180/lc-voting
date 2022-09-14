@@ -7,6 +7,11 @@
         </div>
         <div class="w-full md:mx-4">
             <div class="text-gray-600">
+                @admin
+                    @if ($comment->spam_reports > 0)
+                        <div class="text-red mb-w">Spam Reports: {{ $comment->spam_reports }}</div>
+                    @endif
+                @endadmin
                 {{ $comment->body }}
             </div>
             <div class="flex justify-between mt-6 md:items-center">
@@ -54,8 +59,21 @@
                                             Comment</a></li>
                                 @endcan
                                 <li><a href="#"
-                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
-                                        as spam</a></li>
+                                        @click.prevent="
+                                                isOpen = false
+                                                Livewire.emit('setMarkCommentAsSpam', {{ $comment->id }})
+                                            "
+                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as
+                                        Spam</a></li>
+                                @admin
+                                <li><a href="#"
+                                        @click.prevent="
+                                                isOpen = false
+                                                Livewire.emit('setMarkCommentAsNotSpam', {{ $comment->id }})
+                                            "
+                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as Not
+                                        Spam</a></li>
+                                @endadmin
                             </ul>
                         </div>
                     </div>
