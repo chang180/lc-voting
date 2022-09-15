@@ -64,7 +64,6 @@ class VoteIndexPageTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -94,7 +93,6 @@ class VoteIndexPageTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -134,7 +132,6 @@ class VoteIndexPageTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open', 
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -166,7 +163,6 @@ class VoteIndexPageTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -212,7 +208,6 @@ class VoteIndexPageTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([

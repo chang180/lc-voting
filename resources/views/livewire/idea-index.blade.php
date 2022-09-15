@@ -52,7 +52,7 @@
                 </div>
                 <div x-data="{ isOpen: false }" class="flex items-center mt-4 space-x-2 md:mt-0">
                     <div
-                        class="{{ $idea->status->classes }} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 px-4 py-2">
+                        class="{{ 'status-' . Str::kebab($idea->status->name) }} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 px-4 py-2">
                         {{ $idea->status->name }}</div>
                 </div>
 

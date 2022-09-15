@@ -29,7 +29,7 @@ class NotifyAllVotersTest extends TestCase
 
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
 
-        $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
+        $statusConsidering = Status::factory()->create(['name' => 'Considering']);
 
         $idea = Idea::factory()->create([
             'user_id' => $user->id,

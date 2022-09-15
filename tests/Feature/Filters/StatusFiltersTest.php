@@ -29,7 +29,6 @@ class StatusFiltersTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -58,7 +57,6 @@ class StatusFiltersTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -123,23 +121,18 @@ class StatusFiltersTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
         $statusConsidering = Status::factory()->create([
             'name' => 'Considering',
-            'classes' => 'bg-purple text-white',
         ]);
         $statusInProgress = Status::factory()->create([
             'name' => 'In Progress',
-            'classes' => 'bg-yellow text-white',
         ]);
         $statusImplemented = Status::factory()->create([
             'name' => 'Implemented',
-            'classes' => 'bg-green text-white',
         ]);
         $statusClosed = Status::factory()->create([
             'name' => 'Closed',
-            'classes' => 'bg-red text-white',
         ]);
         
         Idea::factory()->create([

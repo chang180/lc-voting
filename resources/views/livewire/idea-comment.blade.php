@@ -1,9 +1,13 @@
-<div class="relative flex mt-4 transition duration-500 ease-in bg-white comment-container rounded-xl">
+<div
+    class="@if ($comment->is_status_update) is-status-update {{ 'status-'.Str::kebab($comment->status->name) }}@endif relative flex mt-4 transition duration-500 ease-in bg-white comment-container rounded-xl">
     <div class="flex flex-col flex-1 px-4 py-6 md:flex-row">
         <div class="flex-none mx-4">
             <a href="#">
                 <img src="{{ $comment->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
             </a>
+            @if ($comment->user->isAdmin())
+                <div class="text-center uppercase text-blue text-xxs font-bold mt-1">Admin</div>
+            @endif
         </div>
         <div class="w-full md:mx-4">
             <div class="text-gray-600">
@@ -12,11 +16,19 @@
                         <div class="text-red mb-w">Spam Reports: {{ $comment->spam_reports }}</div>
                     @endif
                 @endadmin
-                {{ $comment->body }}
+                @if ($comment->is_status_update)
+                    <h4 class="text-xl font-semibold mb-3">
+                        Status Changed to "{{ $comment->status->name }}"
+                    </h4>
+                @endif
+                <div>
+                    {{ $comment->body }}
+                </div>
             </div>
             <div class="flex justify-between mt-6 md:items-center">
                 <div class="flex items-center space-x-2 text-xs font-semibold text-gray-400">
-                    <div class="font-bold text-gray-900">{{ $comment->user->name }}</div>
+                    <div class="@if ($comment->is_status_update) text-blue @endif font-bold text-gray-900">
+                        {{ $comment->user->name }}</div>
                     <div class="">&bull;</div>
                     {{-- check if the post is posted by the original poster --}}
                     @if ($comment->user_id === $ideaUserId)
@@ -66,13 +78,14 @@
                                         class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as
                                         Spam</a></li>
                                 @admin
-                                <li><a href="#"
-                                        @click.prevent="
+                                    <li><a href="#"
+                                            @click.prevent="
                                                 isOpen = false
                                                 Livewire.emit('setMarkCommentAsNotSpam', {{ $comment->id }})
                                             "
-                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as Not
-                                        Spam</a></li>
+                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as
+                                            Not
+                                            Spam</a></li>
                                 @endadmin
                             </ul>
                         </div>

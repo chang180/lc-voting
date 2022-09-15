@@ -16,6 +16,5 @@
                 <p>No comment yet!</p>
             </div>
         </div>
-
     @endif
 </div>

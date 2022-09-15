@@ -75,7 +75,6 @@ class CreateIdeaTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         Livewire::actingAs($user)
@@ -116,7 +115,6 @@ class CreateIdeaTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         Livewire::actingAs($user)

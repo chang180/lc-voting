@@ -28,7 +28,6 @@ class VoteShowPageTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
@@ -74,7 +73,6 @@ class VoteShowPageTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -104,7 +102,6 @@ class VoteShowPageTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -142,7 +139,6 @@ class VoteShowPageTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -174,7 +170,6 @@ class VoteShowPageTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -220,7 +215,6 @@ class VoteShowPageTest extends TestCase
 
         $status = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([

@@ -821,6 +821,12 @@ select {
 .-mr-2 {
   margin-right: -0.5rem;
 }
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+.ml-22 {
+  margin-left: 5.5rem;
+}
 .mt-12 {
   margin-top: 3rem;
 }
@@ -1346,13 +1352,13 @@ select {
   font-size: 1rem;
   line-height: 1.5rem;
 }
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
 .text-xxs {
   font-size: 0.625rem;
   line-height: 1rem;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 .font-semibold {
   font-weight: 600;
@@ -1554,6 +1560,9 @@ select {
 .duration-300 {
   transition-duration: 300ms;
 }
+.duration-500 {
+  transition-duration: 500ms;
+}
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1574,7 +1583,6 @@ select {
     display: none !important;
 }
 
-
 /* lett line to the left of the comments */
 .comments-container::before {
     content: "";
@@ -1585,11 +1593,10 @@ select {
     top: 0;
     width: 3px;
     background: #edf0f5;
-    /* opacity: .07; */
 }
 
+/* horizontal line the the left of the comments */
 .comment-container::before{
-    /* opacity: .07; */
     background: #edf0f5;
     content: "";
     display: block;
@@ -1600,6 +1607,7 @@ select {
     left: -40px;
 }
 
+/* remove last vertical line */
 .comment-container:last-child::after{
     background: #f7f8fc;
     content: "";
@@ -1608,10 +1616,10 @@ select {
     position: absolute;
     top: 60px;
     width: 3px;
-    left: -40px;
+    left: -38px;
 }
 
-.is-admin::before{
+.is-status-update::before{
     position: absolute;
     width: 38px;
     height: 38px;
@@ -1621,9 +1629,10 @@ select {
     left: -58px;
     background: #8b60ed;
     opacity: 1;
+    z-index: 1;
 }
 
-.is-admin{
+.is-status-update{
     border-width: 1px;
     border-image-source: linear-gradient(226degree, #21c8f6 98%, #637bff -52%);
     border-image-slice: 1;
@@ -1631,6 +1640,39 @@ select {
     #637bff -52%);
     background-origin: border-box;
     background-clip: content-box, border-box;
+}
+
+.status-open,  .status-open:before {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
+}
+
+.status-considering,  .status-considering:before {
+  --tw-bg-opacity: 1;
+  background-color: rgb(139 96 237 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.status-in-progress,  .status-in-progress:before {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 200 81 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.status-implemented,  .status-implemented:before {
+  --tw-bg-opacity: 1;
+  background-color: rgb(26 171 139 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.status-closed,  .status-closed:before {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 69 79 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .hover\:border-gray-300:hover {
@@ -2148,3 +2190,4 @@ select {
     padding-right: 2rem;
   }
 }
+

@@ -29,8 +29,8 @@
                         <div class="text-gray-900">{{ $idea->comments()->count() }} Comments</div>
                     </div>
                     <div x-data="{ isOpen: false }" class="flex items-center mt-4 space-x-2 md:mt-0">
-                        <div
-                            class="{{ $idea->status->classes }} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 px-4 py-2">
+                        <div class={{ 'status-' . Str::kebab($idea->status->name) }} text-xxs font-bold uppercase
+                            leading-none rounded-full text-center w-28 h-7 px-4 py-2">
                             {{ $idea->status->name }}</div>
                         @auth
                             <div class="relative">
@@ -106,7 +106,7 @@
 
     <div class="flex items-center justify-between mt-6 button-container">
         <div class="flex flex-col items-center md:flex-row md:space-x-4 md:ml-6">
-            
+
             <livewire:add-comment :idea="$idea" />
 
             @admin

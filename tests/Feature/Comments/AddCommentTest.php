@@ -94,6 +94,7 @@ class AddCommentTest extends TestCase
         $this->assertDatabaseHas('comments', [
             'user_id' => $user->id,
             'idea_id' => $idea->id,
+            'status_id' => 1,
             'body' => 'Test Comment'
         ]);
     }
