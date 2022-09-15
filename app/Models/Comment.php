@@ -18,6 +18,7 @@ class Comment extends Model
         'idea_id',
         'status_id',
         'body',
+        'is_status_update',
     ];
 
     public function user()

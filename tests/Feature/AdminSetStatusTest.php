@@ -109,11 +109,9 @@ class AdminSetStatusTest extends TestCase
     }
 
     /** @test */
-    public function can_set_status_correctly()
+    public function can_set_status_correctly_no_comment()
     {
-        User::factory()->create([
-            'email' => 'test@test.com',
-        ]);
+        User::factory()->admin()->create();
 
         $user = User::find(1);
 
@@ -142,6 +140,52 @@ class AdminSetStatusTest extends TestCase
             'id' => $idea->id,
             'status_id' => $statusInProgress->id,
         ]);
+
+        $this->assertDatabaseHas('comments', [
+            'body' => 'Status changed to '.$statusInProgress->name,
+            'is_status_update' => 1,
+        ]);
+    }
+
+    /** @test */
+    public function can_set_status_correctly_with_comment()
+    {
+        User::factory()->admin()->create();
+
+        $user = User::find(1);
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
+
+        $statusOpen = Status::factory()->create(['id' => 1, 'name' => 'Open']);
+        $statusConsidering = Status::factory()->create(['id' => 2, 'name' => 'Considering']);
+        $statusInProgress = Status::factory()->create(['id' => 3, 'name' => 'In Progress']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'Idea One',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusConsidering->id,
+            'description' => 'Description of my first title',
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(SetStatus::class, ['idea' => $idea])
+            ->set('status', $statusInProgress->id)
+            ->set('comment', 'This is a comment')
+            ->call('setStatus')
+            ->assertEmitted('statusWasUpdated');
+
+        $this->assertDatabaseHas('ideas', [
+            'id' => $idea->id,
+            'status_id' => $statusInProgress->id,
+        ]);
+
+        $this->assertDatabaseHas('comments', [
+            'body' => 'This is a comment',
+            'is_status_update' => 1,
+        ]);
+
     }
 
     /** @test */

@@ -13,7 +13,7 @@ class IdeaComments extends Component
 
     public $idea;
 
-    protected $listeners = ['commentWasAdded', 'commentWasUpdated', 'commentWasDeleted'];
+    protected $listeners = ['commentWasAdded', 'commentWasUpdated', 'commentWasDeleted', 'statusWasUpdated'];
 
     public function commentWasAdded()
     {
@@ -31,6 +31,12 @@ class IdeaComments extends Component
     {
         $this->idea->refresh();
         $this->gotoPage(1);
+    }
+
+    public function statusWasUpdated()
+    {
+        $this->idea->refresh();
+        $this->gotoPage($this->idea->comments()->paginate()->lastPage());
     }
 
     public function mount(Idea $idea)

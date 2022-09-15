@@ -6,7 +6,7 @@
                 <img src="{{ $comment->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
             </a>
             @if ($comment->user->isAdmin())
-                <div class="text-center uppercase text-blue text-xxs font-bold mt-1">Admin</div>
+                <div class="mt-1 font-bold text-center uppercase text-blue text-xxs">Admin</div>
             @endif
         </div>
         <div class="w-full md:mx-4">
@@ -17,7 +17,7 @@
                     @endif
                 @endadmin
                 @if ($comment->is_status_update)
-                    <h4 class="text-xl font-semibold mb-3">
+                    <h4 class="mb-3 text-xl font-semibold">
                         Status Changed to "{{ $comment->status->name }}"
                     </h4>
                 @endif
@@ -39,7 +39,7 @@
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
                 </div>
                 @auth
-                    <div x-data="{ isOpen: false }" class="flex items-center space-x-2">
+                    <div x-data="{ isOpen: false }" class="flex items-center space-x-2 text-gray-900">
                         <div class="relative">
                             <button @click="isOpen = true"
                                 class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 border rounded-full hover:bg-gray-200 h-7">
