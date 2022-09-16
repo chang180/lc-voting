@@ -929,9 +929,6 @@ select {
 .w-4 {
   width: 1rem;
 }
-.w-76 {
-  width: 19rem;
-}
 .w-10 {
   width: 2.5rem;
 }
@@ -946,6 +943,9 @@ select {
 }
 .w-64 {
   width: 16rem;
+}
+.w-76 {
+  width: 19rem;
 }
 .w-14 {
   width: 3.5rem;
@@ -1284,10 +1284,6 @@ select {
   padding-left: 2rem;
   padding-right: 2rem;
 }
-.px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1295,6 +1291,10 @@ select {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 .px-3 {
   padding-left: 0.75rem;
@@ -2077,12 +2077,12 @@ select {
     position: sticky;
   }
 
-  .md\:-right-12 {
-    right: -3rem;
-  }
-
   .md\:top-8 {
     top: 2rem;
+  }
+
+  .md\:-right-12 {
+    right: -3rem;
   }
 
   .md\:top-6 {
@@ -2139,10 +2139,6 @@ select {
     display: none;
   }
 
-  .md\:w-96 {
-    width: 24rem;
-  }
-
   .md\:w-175 {
     width: 43.75rem;
   }
@@ -2157,6 +2153,10 @@ select {
 
   .md\:w-32 {
     width: 8rem;
+  }
+
+  .md\:w-96 {
+    width: 24rem;
   }
 
   .md\:w-1\/3 {
