@@ -1,33 +1,37 @@
-<div x-data="{ isOpen: false }" 
-    x-init="
-    Livewire.on('commentWasAdded', () => {
-        isOpen = false
-    })
-    
-    Livewire.hook('message.processed', (message, component) => {
-        {{-- if(message.updateQueue[0].method === 'gotoPage' || message.updateQueue[0].method === 'nextPage' || message.updateQueue[0].method === 'previousPage') {
-            const firstComment = document.querySelector('.comment-container:first-child')
-            firstComment.scrollIntoView({ behavior: 'smooth' })
-        } --}}
-        if(['gotoPage', 'nextPage', 'previousPage'].includes(message.updateQueue[0].method)) {
-            const firstComment = document.querySelector('.comment-container:first-child')
-            firstComment.scrollIntoView({ behavior: 'smooth' })
-        }
+<div x-data="{ isOpen: false }" x-init="Livewire.on('commentWasAdded', () => {
+            isOpen = false
+        })
 
-        if (['commentWasAdded','statusWasUpdated'].includes(message.updateQueue[0].payload.event)
-        && message.component.fingerprint.name === 'idea-comments') {
-            const lastComment = document.querySelector('.comment-container:last-child')
-            lastComment.scrollIntoView({ behavior: 'smooth' })
-            lastComment.classList.add('bg-green-50')
+        Livewire.hook('message.processed', (message, component) => {
+            {{-- Pagination --}}
+            if (['gotoPage', 'nextPage', 'previousPage'].includes(message.updateQueue[0].method)) {
+                const firstComment = document.querySelector('.comment-container:first-child')
+                firstComment.scrollIntoView({ behavior: 'smooth' })
+            }
+
+            {{-- Adding Comment --}}
+            if (['commentWasAdded', 'statusWasUpdated'].includes(message.updateQueue[0].payload.event) &&
+                message.component.fingerprint.name === 'idea-comments') {
+                const lastComment = document.querySelector('.comment-container:last-child')
+                lastComment.scrollIntoView({ behavior: 'smooth' })
+                lastComment.classList.add('bg-green-50')
+                setTimeout(() => {
+                    lastComment.classList.remove('bg-green-50')
+                }, 5000)
+            }
+        })
+
+        @if(session('scrollToComment'))
+            const commentToScrollTo = document.querySelector('#comment-{{ session('scrollToComment') }}')
+            commentToScrollTo.scrollIntoView({ behavior: 'smooth' })
+            commentToScrollTo.classList.add('bg-green-50')
             setTimeout(() => {
-                lastComment.classList.remove('bg-green-50')
+                commentToScrollTo.classList.remove('bg-green-50')
             }, 5000)
-        }
-    })
+        @endif
     " 
-    
-    class="relative">
-    <button 
+class="relative">
+    <button
         @click="
             isOpen = !isOpen
             if(isOpen) {
@@ -35,7 +39,7 @@
                     $refs.comment.focus()
                 })
             }
-        " 
+        "
         type="button"
         class="flex items-center justify-center px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 w-36 bg-blue rounded-xl border-blue hover:bg-blue-hover">
         Reply
@@ -58,7 +62,7 @@
                     @enderror
                 </div>
                 <div class="flex flex-col items-center md:flex-row md:space-x-3">
-                    <button 
+                    <button
                         class="flex items-center justify-center w-full px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 md:w-1/2 bg-blue rounded-xl border-blue hover:bg-blue-hover">
                         Post Comment
                     </button>
