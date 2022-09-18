@@ -81,11 +81,15 @@ class="relative">
             <div class="px-4 py-6">
                 <p class="font-normal">Please login or create an account to post a comment.</p>
                 <div class="flex items-center mt-6 space-x-3">
-                    <a href="{{ route('login') }}"
+                    <a 
+                        wire:click.prevent="redirectToLogin"
+                        href="{{ route('login') }}"
                         class="w-1/2 px-6 py-3 text-sm font-semibold text-center text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
                         Login
                     </a>
-                    <a href="{{ route('register') }}"
+                    <a 
+                        wire:click.prevent="redirectToRegister"
+                        href="{{ route('register') }}"
                         class="flex items-center justify-center w-1/2 px-6 py-3 mt-2 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 h-11 rounded-xl hover:border-gray-400 md:mt-0">
                         Sign Up
                     </a>
