@@ -21,10 +21,10 @@ class DeleteIdea extends Component
         if (auth()->guest() || auth()->user()->cannot('delete', $this->idea)) {
             abort(Response::HTTP_FORBIDDEN);
         }
-        //delete idea with related votes
-        Vote::where('idea_id', $this->idea->id)->delete();
+        //delete idea with related votes, but don't need if setup cascade delete in migrations
+        // Vote::where('idea_id', $this->idea->id)->delete();
 
-        Comment::where('idea_id', $this->idea->id)->delete();
+        // Comment::where('idea_id', $this->idea->id)->delete();
 
         $this->idea->delete();
 

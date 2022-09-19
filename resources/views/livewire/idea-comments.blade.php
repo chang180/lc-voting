@@ -11,7 +11,7 @@
         </div>
     @else
         <div class="flex flex-col items-center justify-center mt-12">
-            <img src="{{ asset('img/no-ideas.svg') }}" alt="No Ideas" class="mix-blend-luminosity">
+            <img src="{{ asset('img/no-ideas.svg') }}" alt="No Ideas" class="mx-auto mix-blend-luminosity">
             <div class="text-xl font-bold text-center text-gray-400">
                 <p>No comment yet!</p>
             </div>

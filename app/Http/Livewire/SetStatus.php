@@ -29,6 +29,11 @@ class SetStatus extends Component
             abort(Response::HTTP_FORBIDDEN);
         }
 
+        if((int)$this->status === $this->idea->status_id){
+            $this->emit('statusWasUpdatedError','Status is the same.');
+            return;
+        }
+
         $this->idea->update([
             'status_id' => $this->status,
         ]);
@@ -41,13 +46,13 @@ class SetStatus extends Component
             'user_id' => auth()->id(),
             'idea_id' => $this->idea->id,
             'status_id' => $this->status,
-            'body' => $this->comment ?? 'Status changed to ' . $this->idea->status->name,
+            'body' => $this->comment ?? 'Status changed to ' . Status::find($this->status)->name,
             'is_status_update' => true,
         ]);
 
         $this->reset('comment', 'notifyAllVoters');
 
-        $this->emit('statusWasUpdated');
+        $this->emit('statusWasUpdated', 'Status changed to ' . Status::find($this->status)->name);
     }
 
     public function render()

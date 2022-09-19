@@ -23,7 +23,7 @@
                     </h4>
                 @endif
                 <div>
-                    {{ $comment->body }}
+                    {!! nl2br(e($comment->body)) !!}
                 </div>
             </div>
             <div class="flex justify-between mt-6 md:items-center">

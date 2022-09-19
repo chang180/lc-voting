@@ -58,6 +58,7 @@ class User extends Authenticatable
 
     public function getAvatar()
     {
+        
         $firstCharacter = strtolower($this->email[0]);
 
         $integerToUse = (is_numeric($firstCharacter)) ? ord($firstCharacter) - 21 : ord($firstCharacter) - 96;

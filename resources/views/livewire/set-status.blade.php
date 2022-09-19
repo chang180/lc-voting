@@ -4,6 +4,10 @@
     x-init="
         Livewire.on('statusWasUpdated', () => {
             isOpen = false
+        })
+        
+        Livewire.on('statusWasUpdatedError', () => {
+            isOpen = false
         })"
 >
     <button @click="isOpen = !isOpen" type="button"
